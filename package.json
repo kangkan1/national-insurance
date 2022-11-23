@@ -1,0 +1,11 @@
+{
+  "name": "national-insurance",
+  "version": "1.0.0",
+  "description": "This is national insurance portal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kangkan Lahkar",
+  "license": "MIT"
+}

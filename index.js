@@ -1,7 +1,7 @@
 const express = require('express')
 const main = require('./routes/main')
 const app = express()
-const port = 3000
+const port = 4000
 
 app.use('/', main)
 // app.get('/', (req, res) => {

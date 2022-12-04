@@ -1,16 +1,31 @@
-const router = require("express").Router();
-const mainController = require("../controllers/main");
-// const view_path = require("../views");
-const path = require('path');
+const express = require('express')
+const path = require('path')
+const blogs = require('../data/main')
 
-router.get("/index",mainController.index);
-router.get("/index2",mainController.index2);
-router.get("/get/:id",mainController.id);
+const router = express.Router()
 
-router.get("/",(req, res) => {
-    // res.send('API IS WORKING NOW, YAYY!!');
-    // res.render('index')
-    res.sendFile(path.join(__dirname+'/../views/index.html'));
-  });
+router.get('/', (req, res)=>{
+    // res.sendFile(path.join(__dirname, '../templates/index.html'))
+    res.render('home');
+})
 
-module.exports = router;
+router.get('/main', (req, res)=>{ 
+    // res.sendFile(path.join(__dirname, '../templates/bloghome.html'))
+    res.render('blogHome', {
+        blogs: blogs
+    });
+})
+
+router.get('/mainpost/:slug', (req, res)=>{  
+    myBlog = blogs.filter((e)=>{
+        return e.slug == req.params.slug
+    })  
+    // console.log(myBlog)
+    res.render('blogPage', {
+        title: myBlog[0].title,
+        content: myBlog[0].content
+    });
+    // res.sendFile(path.join(__dirname, '../templates/blogPage.html'))
+})
+
+module.exports = router
